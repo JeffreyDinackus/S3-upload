@@ -1,0 +1,35 @@
+# name: Upload to S3
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   upload:
+#     runs-on: ubuntu-latest
+#     defaults:
+#       run:
+#         working-directory: ./ # Set the working directory to the root of your repository
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
+
+#       - name: Install AWS CLI
+#         run: |
+#           sudo apt-get update && sudo apt-get -y install awscli
+
+#       - name: Upload files to S3
+#         env:
+#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }} 
+#           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3BUCKET_NAME }}
+#         run: |
+#           aws s3 cp ./index.html s3://${{ secrets.AWS_S3BUCKET_NAME }}/
+#           aws s3 sync ./Assets/ s3://${{ secrets.AWS_S3BUCKET_NAME }}/Assets/
